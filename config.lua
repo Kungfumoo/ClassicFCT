@@ -321,8 +321,7 @@ CFCT.Config = {
         CFCT:Log("Defaults restored.")
     end,
     Show = function(self)
-        InterfaceOptionsFrame_OpenToCategory(CFCT.ConfigPanels[1])
-        InterfaceOptionsFrame_OpenToCategory(CFCT.ConfigPanels[1])
+        Settings.OpenToCategory(CFCT.ConfigPanels[1].categoryID)
     end
 }
 
@@ -435,7 +434,7 @@ local TextStrataMenu = {
 
 local AnimationsMenu = {
     Func = function(self, dropdown)
-        
+
     end,
     {
         text = "Pow",
@@ -588,7 +587,7 @@ local function CreateSlider(self, label, tooltip, parent, point1, point2, x, y, 
     slider:SetPoint(point1, parent, point2, x, y)
     slider:SetWidth(270)
     slider.tooltipText = tooltip
-	slider.tooltipRequirement = "Default: " .. (defVal or "") 
+	slider.tooltipRequirement = "Default: " .. (defVal or "")
     getglobal(slider:GetName() .. 'Low'):SetText(tostring(minVal))
     getglobal(slider:GetName() .. 'High'):SetText(tostring(maxVal))
     getglobal(slider:GetName() .. 'Text'):SetText(label)
@@ -917,11 +916,11 @@ local function CreatePowAnimationPanel(self, cat, anchor, point1, point2, x, y)
     UpdateTable(DefaultConfig[cat].Pow, AnimationDefaults.Pow, AnimationDefaults.Pow)
     local enabledCheckbox = f:CreateCheckbox("Enable Pow", "Enables/Disables this animation type", f, "TOPLEFT", "TOPLEFT", 170, -2, DefaultConfig[cat].Pow.enabled, "Config."..cat..".Pow.enabled")
     local c = f:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
-    
+
     local duration = c:CreateSlider("Duration", "Animation duration relative to global duration", f, "TOPLEFT", "TOPLEFT", 310, -12, 0.01, 1, 0.01, DefaultConfig[cat].Pow.duration, "Config."..cat..".Pow.duration")
     duration:SetFrameLevel(enabledCheckbox:GetFrameLevel()+1)
     local inOutRatio = c:CreateSlider("Duration Ratio", "Duration ratio between time spent in Start to Mid phase and time spent in Mid to End phase.", f, "TOPLEFT", "TOPLEFT", 460, -12, 0.01, 1, 0.01, DefaultConfig[cat].Pow.inOutRatio, "Config."..cat..".Pow.inOutRatio")
-    
+
     local initScale = c:CreateSlider("Start Scale", "Initial text scale", f, "TOPLEFT", "TOPLEFT", 160, -58, 0.1, 5, 0.01, DefaultConfig[cat].Pow.initScale, "Config."..cat..".Pow.initScale")
     local midScale = c:CreateSlider("Mid Scale", "Mid point text scale", f, "TOPLEFT", "TOPLEFT", 310, -58, 0.1, 5, 0.01, DefaultConfig[cat].Pow.midScale, "Config."..cat..".Pow.midScale")
     local endScale = c:CreateSlider("End Scale", "Final text scale", f, "TOPLEFT", "TOPLEFT", 460, -58, 0.1, 5, 0.01, DefaultConfig[cat].Pow.endScale, "Config."..cat..".Pow.endScale")
@@ -938,7 +937,7 @@ local function CreatePowAnimationPanel(self, cat, anchor, point1, point2, x, y)
     end)
     f.enabledCheckbox = enabledCheckbox
     return f
-end    
+end
 
 local function CreateFadeInAnimationPanel(self, cat, anchor, point1, point2, x, y)
     local f = self:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
@@ -947,7 +946,7 @@ local function CreateFadeInAnimationPanel(self, cat, anchor, point1, point2, x, 
     UpdateTable(DefaultConfig[cat].FadeIn, AnimationDefaults.FadeIn, AnimationDefaults.FadeIn)
     local enabledCheckbox = f:CreateCheckbox("Enable Fade In", "Enables/Disables this animation type", f, "TOPLEFT", "TOPLEFT", 170, -2, DefaultConfig[cat].FadeIn.enabled, "Config."..cat..".FadeIn.enabled")
     local c = f:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
-    
+
     local duration = c:CreateSlider("Duration", "Animation duration relative to global duration", f, "TOPLEFT", "TOPLEFT", 320, -12, 0.01, 1, 0.01, DefaultConfig[cat].FadeIn.duration, "Config."..cat..".FadeIn.duration")
     duration:SetFrameLevel(enabledCheckbox:GetFrameLevel()+1)
     duration:SetWidth(140)
@@ -959,7 +958,7 @@ local function CreateFadeInAnimationPanel(self, cat, anchor, point1, point2, x, 
     end)
     f.enabledCheckbox = enabledCheckbox
     return f
-end   
+end
 local function CreateFadeOutAnimationPanel(self, cat, anchor, point1, point2, x, y)
     local f = self:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
     f:Hide()
@@ -967,7 +966,7 @@ local function CreateFadeOutAnimationPanel(self, cat, anchor, point1, point2, x,
     UpdateTable(DefaultConfig[cat].FadeOut, AnimationDefaults.FadeOut, AnimationDefaults.FadeOut)
     local enabledCheckbox = f:CreateCheckbox("Enable Fade Out", "Enables/Disables this animation type", f, "TOPLEFT", "TOPLEFT", 170, -2, DefaultConfig[cat].FadeOut.enabled, "Config."..cat..".FadeOut.enabled")
     local c = f:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
-    
+
     local duration = c:CreateSlider("Duration", "Animation duration relative to global duration", f, "TOPLEFT", "TOPLEFT", 320, -12, 0.01, 1, 0.01, DefaultConfig[cat].FadeOut.duration, "Config."..cat..".FadeOut.duration")
     duration:SetFrameLevel(enabledCheckbox:GetFrameLevel()+1)
     duration:SetWidth(140)
@@ -1025,7 +1024,7 @@ local function CreateScrollAnimationPanel(self, cat, anchor, point1, point2, x, 
     UpdateTable(DefaultConfig[cat].Scroll, AnimationDefaults.Scroll, AnimationDefaults.Scroll)
     local enabledCheckbox = f:CreateCheckbox("Enable Scroll", "Enables/Disables this animation type", f, "TOPLEFT", "TOPLEFT", 170, -2, DefaultConfig[cat].Scroll.enabled, "Config."..cat..".Scroll.enabled")
     local c = f:CreateChildFrame(point1, point2, anchor, x, y, 612, 90)
-    
+
     local dirDropDown = c:CreateDropDownMenu("Direction", "Scroll direction", f, "TOPLEFT", "TOPLEFT", 320-16, 0, ScrollDirectionsMenu, "Config."..cat..".Scroll.direction")
     dirDropDown.middle:SetWidth(120)
     local distance = c:CreateSlider("Distance", "Scroll distance", f, "TOPLEFT", "TOPLEFT", 320, -40, 1, floor(WorldFrame:GetWidth()), 1, DefaultConfig[cat].Scroll.distance, "Config."..cat..".Scroll.distance")
@@ -1039,13 +1038,13 @@ local function CreateScrollAnimationPanel(self, cat, anchor, point1, point2, x, 
     end)
     f.enabledCheckbox = enabledCheckbox
     return f
-end    
+end
 
 
 local function CreateCategoryPanel(self, cat, anchor, point1, point2, x, y)
     local f = self:CreateChildFrame(point1, point2, anchor, x, y, 612, 180)
     f:Show()
-    
+
     local header = self:CreateHeader(HEADER_TEXT[cat], "GameFontNormalLarge", f, "TOPLEFT", "TOPLEFT", 4, -2)
     local enabledCheckbox = self:CreateCheckbox("Enabled", "Enables/Disables this event type", f, "TOPLEFT", "TOPLEFT", 143, 0, DefaultConfig[cat].enabled, "Config."..cat..".enabled")
     enabledCheckbox.label:SetWidth(80)
@@ -1089,7 +1088,7 @@ local function CreateCategoryPanel(self, cat, anchor, point1, point2, x, y)
             updateStatus()
         end)
     end
-    
+
     local function show(val)
         for k,v in pairs(animPanel) do
             if (k == val) then v:Show() else v:Hide() end
@@ -1167,7 +1166,8 @@ local function CreateChildFrame(self, point1, point2, anchor, x, y, w, h)
 end
 
 local function CreateConfigPanel(name, parent, height)
-    local Container = CreateFrame('frame', "ClassicFCTConfigPanel_"..gsub(name, " ", ""), UIParent)
+    local panalName = "ClassicFCT_"..gsub(name, " ", "")
+    local Container = CreateFrame('frame', panalName, UIParent)
     local sf = CreateFrame('ScrollFrame', Container:GetName().."_ScrollFrame", Container, "UIPanelScrollFrameTemplate")
     local sfname = sf:GetName()
     sf.scrollbar = getglobal(sfname.."ScrollBar")
@@ -1176,10 +1176,10 @@ local function CreateConfigPanel(name, parent, height)
 
     sf.scrollupbutton:ClearAllPoints();
     sf.scrollupbutton:SetPoint("TOPLEFT", sf, "TOPRIGHT", -6, -2);
-    
+
     sf.scrolldownbutton:ClearAllPoints();
     sf.scrolldownbutton:SetPoint("BOTTOMLEFT", sf, "BOTTOMRIGHT", -6, 2);
-    
+
     sf.scrollbar:ClearAllPoints();
     sf.scrollbar:SetPoint("TOP", sf.scrollupbutton, "BOTTOM", 0, -2);
     sf.scrollbar:SetPoint("BOTTOM", sf.scrolldownbutton, "TOP", 0, 2);
@@ -1191,14 +1191,17 @@ local function CreateConfigPanel(name, parent, height)
 	end
 	Container.cancel = function(self)
 	end
-    InterfaceOptions_AddCategory(Container)
+
+    local category = Settings.RegisterCanvasLayoutCategory(Container, panalName)
+    Container.categoryID = category:GetID()
+    Settings.RegisterAddOnCategory(category)
     CFCT.ConfigPanels[#CFCT.ConfigPanels + 1] = Container
     -- Container:HookScript("OnShow")
     Container:SetAllPoints()
     Container:Hide()
 
     local p = CreateFrame("Frame", Container:GetName().."_ScrollChild")
-    p.refresh = function(self) Container:refresh() end 
+    p.refresh = function(self) Container:refresh() end
     p.widgets = {}
     p.widgetCount = 0
     p.CreateSubPanel = function(self, name, height)
@@ -1445,13 +1448,13 @@ filteringBlacklistDropdown:HookScript("OnShow", function(self)
             end
         end
     end
-    if (self.curValue == nil) then 
+    if (self.curValue == nil) then
         for k,v in pairs(spellIdTable) do
             self.curValue = k
             break
         end
     end
-    if (self.curValue == nil) then 
+    if (self.curValue == nil) then
         for k,v in pairs(CFCT.spellIdCache) do
             self.curValue = k
             break
@@ -1570,13 +1573,13 @@ mergingIntervalOverrideDropdown:HookScript("OnShow", function(self)
             end
         end
     end
-    if (self.curValue == nil) then 
+    if (self.curValue == nil) then
         for k,v in pairs(spellIdTable) do
             self.curValue = k
             break
         end
     end
-    if (self.curValue == nil) then 
+    if (self.curValue == nil) then
         for k,v in pairs(CFCT.spellIdCache) do
             self.curValue = k
             break

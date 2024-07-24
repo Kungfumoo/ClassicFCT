@@ -646,12 +646,12 @@ local function DispatchText(guid, event, text, amount, spellid, spellicon, perio
         if (not crit) then
             AddToAverage(amount / count)
         end
-		
+
 		--ignore flametounge weapon
 		if spellid == 10444 then
 			return false
 		end
-	
+
         if (fctConfig.filterAbsoluteEnabled and (fctConfig.filterAbsoluteThreshold > amount))
         or (fctConfig.filterRelativeEnabled and ((fctConfig.filterRelativeThreshold * 0.01 * CFCT:UnitHealthMax('player')) > amount))
         or (fctConfig.filterAverageEnabled and ((fctConfig.filterAverageThreshold * 0.01 * CFCT:DamageRollingAverage()) > amount)) then
@@ -664,14 +664,14 @@ local function DispatchText(guid, event, text, amount, spellid, spellicon, perio
             text = FormatThousandSeparator(amount)
         end
     end
-    
+
     if (count > 1) and fctConfig.mergeEventsCounter then
         text = text.." x"..tostring(count)
     end
 
     if (spellicon and catConfig.showIcons) then text = spellicon..text end
 
-    
+
     local fontColor, fontAlpha
     local typeColor = periodic and fctConfig.colorTableDotEnabled and GetDotTypeColor(school) or GetDamageTypeColor(school)
     if (catConfig.colorByType == true) and typeColor then
@@ -979,7 +979,7 @@ local nameplates = {}
 function f:NAME_PLATE_UNIT_ADDED(unit)
     local guid = UnitGUID(unit)
     nameplates[unit] = guid
-    nameplates[guid] = unit 
+    nameplates[guid] = unit
 end
 function f:NAME_PLATE_UNIT_REMOVED(unit)
     local guid = nameplates[unit]
