@@ -1,7 +1,6 @@
-[![](http://img.youtube.com/vi/gNMEFNtfaEQ/0.jpg)](http://www.youtube.com/watch?v=gNMEFNtfaEQ "Youtube link")
-# ClassicFCT [![ko-fi](https://ko-fi.com/img/githubbutton_sm.svg)](https://ko-fi.com/Y8Y66XZTG)
-Highly customizable "Floating Combat Text" addon with text anti-overlap behavior similiar to that of WoW Classic.
- 
+FORK from the original project with kungfumoo tweaks.
+
+# ORIGINAL README: 
 
 Use "/cfct" command to open the options interface.
  
