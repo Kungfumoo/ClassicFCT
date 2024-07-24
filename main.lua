@@ -646,6 +646,12 @@ local function DispatchText(guid, event, text, amount, spellid, spellicon, perio
         if (not crit) then
             AddToAverage(amount / count)
         end
+		
+		--ignore flametounge weapon
+		if spellid == 10444 then
+			return false
+		end
+	
         if (fctConfig.filterAbsoluteEnabled and (fctConfig.filterAbsoluteThreshold > amount))
         or (fctConfig.filterRelativeEnabled and ((fctConfig.filterRelativeThreshold * 0.01 * CFCT:UnitHealthMax('player')) > amount))
         or (fctConfig.filterAverageEnabled and ((fctConfig.filterAverageThreshold * 0.01 * CFCT:DamageRollingAverage()) > amount)) then
@@ -707,9 +713,9 @@ CFCT.eventCache = eventCache
 local function CacheEvent(guid, event, amount, text, spellid, spellicon, periodic, crit, miss, pet, school)
     if (spellid and not spellIdCache[spellid]) then
         spellIdCache[spellid] = true
-        if CFCT.ConfigPanel:IsVisible() then
-            CFCT.ConfigPanel:refresh()
-        end
+        --if CFCT.ConfigPanel:IsVisible() then
+        --    CFCT.ConfigPanel:refresh()
+        --end
     end
 
     local fctConfig = CFCT.Config
